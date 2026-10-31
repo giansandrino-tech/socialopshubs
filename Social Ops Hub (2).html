@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Social Ops Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--tx:#1b1f27;--mu:#667085;--bd:#e3e6eb;--ac:#4f46e5;--ok:#16a34a;--wn:#d97706;--er:#dc2626;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161b;--card:#1d2027;--tx:#eceef2;--mu:#98a0ae;--bd:#2d313a;--ac:#8b84ff}}
+:root[data-theme="dark"]{--bg:#14161b;--card:#1d2027;--tx:#eceef2;--mu:#98a0ae;--bd:#2d313a;--ac:#8b84ff}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{padding:14px 18px 0}h1{font-size:18px;margin:0 0 10px}
+nav{display:flex;gap:4px;overflow-x:auto;padding:0 14px;border-bottom:1px solid var(--bd)}
+nav button{background:none;border:0;border-bottom:2px solid transparent;padding:9px 12px;color:var(--mu);cursor:pointer;font:inherit;white-space:nowrap}
+nav button.on{color:var(--ac);border-color:var(--ac);font-weight:600}
+main{padding:16px;max-width:1100px;margin:auto}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.stat b{display:block;font-size:24px}.stat span{color:var(--mu);font-size:12px}
+form{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;align-items:end}
+label{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--mu)}
+input,select,textarea{font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:7px;padding:7px 9px;width:100%}
+textarea{min-height:60px}.wide{grid-column:1/-1}
+button.p,button.s{font:inherit;border-radius:7px;padding:7px 12px;cursor:pointer;border:1px solid var(--ac)}
+button.p{background:var(--ac);color:#fff}button.s{background:none;color:var(--ac)}button.d{border-color:var(--er);color:var(--er)}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:640px}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--bd);vertical-align:top}th{font-size:12px;color:var(--mu);font-weight:600}
+.chip{display:inline-block;padding:1px 8px;border-radius:99px;font-size:11px;border:1px solid var(--bd)}
+.ok{color:var(--ok);border-color:var(--ok)}.wn{color:var(--wn);border-color:var(--wn)}.er{color:var(--er);border-color:var(--er)}
+.mu{color:var(--mu)}.note{font-size:12px;color:var(--mu);margin:0 0 10px}
+.row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.av{width:96px;height:96px;border-radius:50%;background:var(--bd);display:flex;align-items:center;justify-content:center;font-size:34px;color:var(--mu);overflow:hidden;flex:none}.av img{width:100%;height:100%;object-fit:cover}.av.sm{width:26px;height:26px;font-size:13px}
+.prof{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.mc{display:inline-flex;align-items:center;gap:7px}
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.pc{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:9px}
+.ph{display:flex;align-items:center;gap:9px;font-weight:600}.ph svg{width:30px;height:30px;flex:none}.ph .chip{margin-left:auto}
+.upl{display:inline-block;padding:7px 12px;border:1px solid var(--ac);border-radius:7px;color:var(--ac);cursor:pointer;font-size:14px}
+.lg svg{width:22px;height:22px;display:block}#pl svg{width:28px;height:28px;display:block}
+:root{--bg:#f2f1f8;--card:#fff;--tx:#191a33;--mu:#6b6d8a;--bd:#e4e3f0;--ac:#6a5cff;--ac2:#b05cff;--ok:#12a58a;--wn:#d98a0b;--er:#e5484d;--sb:#1b1840;--sbtx:#c9c6ee;--sh:0 1px 2px rgba(27,24,64,.06),0 10px 26px -14px rgba(27,24,64,.22)}
+@media (prefers-color-scheme:dark){:root:not([data-theme='light']){--bg:#0e0e1b;--card:#171729;--tx:#ecebfa;--mu:#9a9bbd;--bd:#27273f;--ac:#8d82ff;--ac2:#c37dff;--ok:#2fd4b2;--wn:#f5b042;--er:#ff7a80;--sb:#0a0a15;--sh:0 1px 2px rgba(0,0,0,.4),0 12px 30px -14px rgba(0,0,0,.7)}}
+:root[data-theme='dark']{--bg:#0e0e1b;--card:#171729;--tx:#ecebfa;--mu:#9a9bbd;--bd:#27273f;--ac:#8d82ff;--ac2:#c37dff;--ok:#2fd4b2;--wn:#f5b042;--er:#ff7a80;--sb:#0a0a15;--sh:0 1px 2px rgba(0,0,0,.4),0 12px 30px -14px rgba(0,0,0,.7)}
+body{font:14px/1.5 'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif}
+h1,h2,h3,.stat b,.brand{font-family:Sora,'Plus Jakarta Sans',system-ui,sans-serif}
+.app{display:grid;grid-template-columns:248px minmax(0,1fr);min-height:100vh}
+aside{background:var(--sb);color:var(--sbtx);padding:22px 14px;display:flex;flex-direction:column;gap:26px;position:sticky;top:0;height:100vh;align-self:start}
+.brand{display:flex;align-items:center;gap:11px;color:#fff;font-size:16px;font-weight:700;padding:0 8px}
+.bm{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--ac),#ff7ac8);display:grid;place-items:center;flex:none}
+aside nav{flex-direction:column;border:0;padding:0;gap:4px;overflow:visible}
+aside nav button{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 12px;border:0;border-radius:12px;color:var(--sbtx);font-size:13.5px;font-weight:600;transition:background .15s,color .15s}
+aside nav button:hover{background:rgba(255,255,255,.07);color:#fff}
+aside nav button.on{background:linear-gradient(90deg,rgba(141,130,255,.34),rgba(141,130,255,.06));color:#fff;box-shadow:inset 3px 0 0 var(--ac2)}
+.sbfoot{margin-top:auto;display:flex;align-items:center;gap:8px;font-size:12px;padding:0 10px;color:var(--sbtx)}
+.sbfoot i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(47,212,178,.18)}
+.top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:28px 28px 4px}
+.top h1{font-size:26px;letter-spacing:-.02em;margin:0}.top p{margin:3px 0 0;color:var(--mu)}
+.pill{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--card);border:1px solid var(--bd);font-size:12px;font-weight:600;color:var(--mu)}
+main{padding:16px 28px 48px;max-width:1280px;margin:0}
+.card{border-radius:16px;border:1px solid var(--bd);box-shadow:var(--sh)}
+.card.tw{padding:0;overflow-x:auto}
+.grid{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:6px}.grid .card{margin:0}
+.stat{position:relative;overflow:hidden;padding:16px 18px 16px 22px}
+.stat::before{content:'';position:absolute;inset:0 auto 0 0;width:5px;background:linear-gradient(var(--ac),var(--ac2))}
+.stat b{font-size:30px;letter-spacing:-.03em;line-height:1.1}.stat span{font-weight:600;font-size:12.5px}
+label{font-weight:600}
+input,select,textarea{border-radius:10px;padding:9px 11px;background:var(--card);border:1px solid var(--bd);transition:box-shadow .15s,border-color .15s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--ac);box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 25%,transparent)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+button.p{background:linear-gradient(135deg,var(--ac),var(--ac2));border:0;border-radius:10px;font-weight:600;box-shadow:0 8px 18px -8px color-mix(in srgb,var(--ac) 80%,transparent);transition:transform .12s,filter .12s}
+button.p:hover{filter:brightness(1.08)}button.p:active,button.s:active{transform:translateY(1px)}
+button.s{border-radius:10px;border:1px solid var(--bd);color:var(--tx);background:var(--card);font-weight:600;transition:border-color .12s,color .12s}
+button.s:hover{border-color:var(--ac);color:var(--ac)}
+button.s.d{color:var(--er);border-color:color-mix(in srgb,var(--er) 40%,var(--bd))}button.s.d:hover{border-color:var(--er);color:var(--er)}
+button.mc{border-radius:999px;padding:5px 13px 5px 5px}
+th{position:sticky;top:0;background:color-mix(in srgb,var(--card) 90%,var(--bg));font-size:11.5px;font-weight:700;padding:12px 14px;border-bottom:1px solid var(--bd)}
+td{padding:12px 14px}tbody tr:hover td{background:color-mix(in srgb,var(--ac) 5%,transparent)}tbody tr:last-child td{border-bottom:0}
+.chip{display:inline-flex;align-items:center;gap:6px;border:0;padding:3px 10px 3px 8px;font-weight:600;background:color-mix(in srgb,var(--mu) 15%,transparent);color:var(--mu)}
+.chip::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
+.chip.ok{background:color-mix(in srgb,var(--ok) 15%,transparent);color:var(--ok)}.chip.wn{background:color-mix(in srgb,var(--wn) 16%,transparent);color:var(--wn)}.chip.er{background:color-mix(in srgb,var(--er) 14%,transparent);color:var(--er)}
+.av{box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--ac)}.av.sm{box-shadow:none}
+.card.prof{background:linear-gradient(120deg,color-mix(in srgb,var(--ac) 13%,var(--card)),var(--card) 65%)}
+.pc{border-radius:16px;box-shadow:var(--sh);border-top:3px solid var(--pc,var(--ac))}
+.pc[data-p='Instagram']{--pc:#d62976}.pc[data-p='Facebook']{--pc:#1877f2}.pc[data-p='Threads']{--pc:#9b9bb0}.pc[data-p='X']{--pc:#7d7d92}.pc[data-p='TikTok']{--pc:#25c9c4}.pc[data-p='YouTube']{--pc:#ff2a2a}
+h3{font-size:15px;margin:18px 0 10px}
+@media (max-width:860px){.app{grid-template-columns:1fr}aside{position:static;height:auto;flex-direction:row;align-items:center;padding:10px 12px;gap:10px;overflow-x:auto}aside nav{flex-direction:row}aside nav button{width:auto;white-space:nowrap}.brand span,.sbfoot{display:none}.top{padding:18px 16px 2px}main{padding:12px 16px 40px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.ds{position:relative;display:flex;gap:10px;overflow-x:auto;padding:4px 2px 10px;scroll-snap-type:x proximity}.cs{margin-bottom:14px}
+.dc{flex:none;width:82px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 6px;border-radius:14px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);cursor:pointer;position:relative;scroll-snap-align:center;font:inherit;transition:transform .12s,border-color .12s}
+.dc:hover{border-color:var(--ac)}.dc:active{transform:translateY(1px)}
+.dc .dw,.dc .dm{font-size:10.5px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.04em}
+.dc b{font-size:22px;line-height:1.15;font-family:Sora,sans-serif}
+.dc .dn{margin-top:4px;font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:999px;color:var(--mu)}
+.dc .dn.has{background:color-mix(in srgb,var(--ac) 16%,transparent);color:var(--ac)}
+.dc.td::after{content:'';position:absolute;top:8px;right:8px;width:7px;height:7px;border-radius:50%;background:var(--ok)}
+.dc.on{background:linear-gradient(160deg,var(--ac),var(--ac2));border-color:transparent;color:#fff;box-shadow:0 10px 22px -10px color-mix(in srgb,var(--ac) 80%,transparent)}
+.dc.on .dw,.dc.on .dm{color:rgba(255,255,255,.8)}.dc.on .dn,.dc.on .dn.has{background:rgba(255,255,255,.22);color:#fff}
+.vh{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
+form.sf{display:flex;flex-direction:column;align-items:stretch;gap:16px}.sr{display:flex;flex-direction:column;gap:7px}.sr>.mu{font-size:12px;font-weight:600}
+.big{font-size:13px;color:var(--tx);gap:6px}.big textarea{min-height:120px;font-size:15px;padding:14px;border-radius:14px}.big input{font-size:15px;padding:13px 14px;border-radius:14px}
+.pk,.tg{position:relative;cursor:pointer;display:inline-flex;flex-direction:row;align-items:center;gap:7px;padding:7px 13px 7px 8px;border:1px solid var(--bd);border-radius:12px;background:var(--bg);font-weight:600;color:var(--tx);font-size:13px;transition:border-color .12s,background .12s}
+.tg{padding:7px 15px;border-radius:999px}.pk:hover,.tg:hover{border-color:var(--ac)}
+.pk:has(input:checked),.tg:has(input:checked){border-color:var(--ac);background:color-mix(in srgb,var(--ac) 14%,var(--card));color:var(--ac);box-shadow:0 0 0 2px color-mix(in srgb,var(--ac) 22%,transparent)}
+.pk:has(input:focus-visible),.tg:has(input:focus-visible){outline:2px solid var(--ac);outline-offset:2px}
+.meta{display:flex;align-items:center;gap:8px}.th{display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:999px}
+.cv{text-align:center;font-weight:700;cursor:pointer}.cv.ok{color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,transparent)}.cv.gap{color:var(--er);background:color-mix(in srgb,var(--er) 9%,transparent)}
+.ck{display:flex;flex-wrap:wrap;gap:4px 12px;margin:8px 0 2px}.ck label{flex-direction:row;align-items:center;gap:6px;font-size:12px;color:var(--tx);font-weight:500}.ck input{width:auto}
+.mt{display:block;width:84px;height:84px;object-fit:cover;border-radius:10px;border:1px solid var(--bd);margin-top:6px}
+.sbfoot{gap:10px;line-height:1.3}.sbfoot b{color:#fff;font-size:13px}.sbfoot img.ua{width:34px;height:34px;border-radius:50%;object-fit:cover;flex:none}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);max-width:min(92vw,520px);padding:13px 18px;border-radius:12px;background:#1b1840;color:#fff;border-left:5px solid var(--er);font-weight:600;box-shadow:0 14px 34px -10px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:60}#toast.on{opacity:1;transform:translate(-50%,0)}
+.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(176px,1fr));gap:16px}
+.mt2{aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:14px;border-radius:20px;border:1px solid var(--bd);background:var(--card);color:var(--tx);cursor:pointer;font:inherit;box-shadow:var(--sh);transition:transform .15s,border-color .15s}
+.mt2:hover{border-color:var(--ac);transform:translateY(-2px)}.mt2 .av{width:72px;height:72px;font-size:26px}.mt2 b{font-size:16px;font-family:Sora,sans-serif}.mt2 .mu{font-size:12px;font-weight:600}
+.lgr{cursor:pointer}.lgr:hover td{background:color-mix(in srgb,var(--ac) 8%,transparent)}
+.lgd td{background:color-mix(in srgb,var(--ac) 5%,var(--card));padding:16px 18px}.lgp h4{margin:14px 0 6px;font-size:13px}.dg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px 18px}
+</style></head><body>
+<div class="app"><aside><div class="brand"><div class="bm"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></svg></div><span>Social Ops Hub</span></div><nav id="nav"></nav><div class="sbfoot"><i></i>Shared workspace</div></aside>
+<div class="stage"><div class="top"><div><h1 id="pt"></h1><p id="ps"></p></div><div class="meta"><button class="s th" id="th" type="button"></button><span class="pill" id="dt"></span></div></div>
+<main><div id="msg"></div><div id="form"></div><div id="list"></div></main></div></div>
+<script>
+(function(){let t;window.alert=function(m){let e=document.getElementById("toast");if(!e){e=document.createElement("div");e.id="toast";e.setAttribute("role","alert");document.body.appendChild(e)}e.textContent=String(m);e.className="on";clearTimeout(t);t=setTimeout(function(){e.className=""},7000)}})();
+const TABS=[["dash","Dashboard"],["models","Models & Accounts"],["sched","Schedule Content"],["post","Posting Sheet"],["qa","QA"],["qrec","QA Records"],["store","Storage"],["team","Team"]];
+const PLATS=["Instagram","Facebook","Threads","X","TikTok","YouTube"];const BASE={Instagram:"https://www.instagram.com/",Facebook:"https://www.facebook.com/",Threads:"https://www.threads.net/",X:"https://x.com/",TikTok:"https://www.tiktok.com/",YouTube:"https://www.youtube.com/"};
+let MODELS=["Bella","Ava","Sarah","Mila","Ally","Mew","Nomi","Natty","Kayla"];const K=(m,p)=>m.toLowerCase()+"_"+p;let mSel="Bella",A=null,adding=false,pend=null,mSch="",editPost=null;
+const TYPES={Instagram:["Reel","Caption post","Story"],Facebook:["Reel","Caption post","Story","Text post"],TikTok:["Reel","Story","Photo post"],X:["Text post","Reel","Photo post"],YouTube:["Reel"],Threads:["Reel","Caption post","Story"]};let ME={name:"",id:null},smf="";const S={models:[],posts:[],log:[],creds:{},av:{},hist:[]};
+const sv=b=>`<svg viewBox="0 0 24 24" aria-hidden="true">${b}</svg>`;
+const TT='<path d="M13 5.5v8.7a2.4 2.4 0 1 1-2.4-2.4M13 5.5c.3 1.9 1.6 3.2 3.6 3.4" fill="none" stroke-width="2" stroke-linecap="round"/>';
+const LOGO={
+Instagram:sv('<defs><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".45" stop-color="#d62976"/><stop offset="1" stop-color="#4f5bd5"/></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig)"/><rect x="5.5" y="5.5" width="13" height="13" rx="4" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="16.2" cy="7.8" r="1" fill="#fff"/>'),
+Facebook:sv('<rect width="24" height="24" rx="6" fill="#1877f2"/><path d="M13.2 20v-6.6h2.2l.4-2.6h-2.6V9.2c0-.8.3-1.3 1.4-1.3h1.3V5.6c-.3 0-1.1-.1-2-.1-2 0-3.3 1.2-3.3 3.4v1.9H8.4v2.6h2.2V20z" fill="#fff"/>'),
+Threads:sv('<rect width="24" height="24" rx="6" fill="#111"/><text x="12" y="17" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="Arial,sans-serif">@</text>'),
+X:sv('<rect width="24" height="24" rx="6" fill="#111"/><path d="M7 7l10 10M17 7L7 17" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>'),
+TikTok:sv('<rect width="24" height="24" rx="6" fill="#111"/><g transform="translate(-.8 .6)" stroke="#25f4ee">'+TT+'</g><g transform="translate(.8 -.6)" stroke="#fe2c55">'+TT+'</g><g stroke="#fff">'+TT+'</g>'),
+YouTube:sv('<rect width="24" height="24" rx="6" fill="#f00"/><path d="M9.5 8v8l6.8-4z" fill="#fff"/>')};
+function shrink(f,mx){return new Promise((ok,no)=>{const r=new FileReader();r.onerror=()=>no(new Error("read failed"));r.onload=()=>{const i=new Image();i.onerror=()=>no(new Error("not an image"));i.onload=()=>{const s=Math.min(1,(mx||480)/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=Math.round(i.width*s);c.height=Math.round(i.height*s);c.getContext("2d").drawImage(i,0,0,c.width,c.height);c.toBlob(b=>b?ok(b):no(new Error("resize failed")),"image/jpeg",.85)};i.src=r.result};r.readAsDataURL(f)})}let tab="dash",db=null,confirmId=null,editId=null,isAdmin=false,q="",pf="",shown={};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fd=t=>typeof t==="string"&&t.length===10?new Date(t+"T12:00").toLocaleDateString([],{dateStyle:"medium"}):t?new Date(t).toLocaleString([], {dateStyle:"medium",timeStyle:"short"}):"—";
+const link=u=>u?`<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">link</a>`:"—";
+const chip=(t,c)=>`<span class="chip ${c||""}">${esc(t)}</span>`;
+const qaC=q=>q==="Approved"?"ok":q==="Needs fix"?"er":"wn";
+const safeUrl=u=>/^https?:\/\//i.test(u)?u:(u?"https://"+u:"");
+
+const IC={dash:'<path d="M4 4h7v7H4zM13 4h7v4h-7zM13 10h7v10h-7zM4 13h7v7H4z"/>',models:'<circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 5a3.5 3.5 0 0 1 0 6.5M17 14.3c2.3.6 4 2.9 4 5.7"/>',sched:'<rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',post:'<path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/>',qa:'<path d="M12 3 4 6v6c0 4.5 3.2 7.8 8 9 4.8-1.2 8-4.5 8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/>',qrec:'<rect x="5" y="3.5" width="14" height="17" rx="3"/><path d="M9 9h6M9 13h6M9 17h3"/>',store:'<ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V6M4.5 12v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6"/>'};
+const SUB={dash:"What needs attention today",models:"Logins, links and profile photos for every account",sched:"Plan content for each model and platform",post:"Mark what went live",qa:"Review content after it is posted",qrec:"Approved content archive",store:"Everything saved in the system"};
+function nav(){$("#nav").innerHTML=TABS.filter(([k])=>tabOk(k)).map(([k,v])=>`<button class="${k===tab?"on":""}" data-t="${k}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>${v}</button>`).join("");
+ $("#pt").textContent=TABS.find(x=>x[0]===tab)[1];$("#ps").textContent=SUB[tab];$("#dt").textContent=new Date().toLocaleDateString([],{weekday:"short",month:"short",day:"numeric"});
+ document.querySelectorAll("#nav button").forEach(b=>b.onclick=()=>{tab=b.dataset.t;confirmId=null;nav();showForm();list()})}
+
+async function write(fn,action,summary){
+ if(!db){return alert("Storage unavailable. Sign in to save data.")}
+ try{await fn();await db.collection("log").add({ts:Date.now(),action,summary,who:ME.name||"",model:(ALLM.find(m=>String(summary||"").includes(m))||"")})}
+ catch(e){alert("Could not save: "+(e&&e.message||e.code||"error"))}}
+
+function showForm(){
+ const f=$("#form");
+ if(tab==="models")f.innerHTML="";
+ else if(tab==="sched"){f.innerHTML=schedForm();wireSched()}else if(0)f.innerHTML=`<div class="card"><form id="fs">
+ <label>Model<select name="model">${MODELS.map(m=>`<option>${m}</option>`).join("")}</select></label><label>Platform<select name="platform">${PLATS.map(p=>`<option>${p}</option>`).join("")}</select></label>
+ <label>Publish date & time<input type="datetime-local" name="when" required></label>
+ <label>Media link<input name="media" placeholder="Drive / Dropbox link"></label>
+ <label class="wide">Caption<textarea name="caption" required></textarea></label><button class="p">Schedule post</button></form></div>`;
+ else f.innerHTML="";
+ const fm=$("#fm"),fs=$("#fs");
+ if(fm){const pl=fm.platform,ul=fm.url;let last=BASE[pl.value];if(!ul.value)ul.value=last;
+  pl.onchange=()=>{if(!ul.value||ul.value===last)ul.value=BASE[pl.value];last=BASE[pl.value]};
+  const cx=$("#cx");if(cx)cx.onclick=()=>{editId=null;showForm();list()};
+  fm.onsubmit=e=>{e.preventDefault();const v=Object.fromEntries(new FormData(fm));const pw=v.pw;delete v.pw;const id=editId;editId=null;
+   write(async()=>{let ref;if(id){ref=db.collection("models").doc(id);await ref.update(v)}else{ref=await db.collection("models").add({...v,created:Date.now()})}
+    if(isAdmin&&pw!==undefined)await db.collection("credentials").doc(ref.id).set({pw})},id?"Edited account":"Added account",`${v.name} · ${v.platform}`);showForm()}}
+ if(fs)fs.onsubmit=e=>{e.preventDefault();const v=Object.fromEntries(new FormData(fs));if(!v.model)return;const m={id:K(v.model,v.platform),name:v.model,platform:v.platform};
+  write(()=>db.collection("posts").add({modelId:m.id,modelName:m.name,platform:m.platform,handle:"",caption:v.caption,media:safeUrl(v.media),when:v.when,status:"Scheduled",qa:"Pending",qaNotes:"",postedUrl:"",created:Date.now()}),"Scheduled post",`${m.name} · ${m.platform} · ${v.when}`);fs.reset()}}
+
+const addBox=()=>`<div class="card"><div class="row"><input id="nm" placeholder="Model name" style="max-width:220px" maxlength="30"><button class="p" data-addgo="1">Add</button>${MODELS.length?`<button class="s" data-addx="1">Cancel</button>`:""}</div></div>`;
+function modelView(){
+ if(!MODELS.length)return `<div class="card">No models yet. Add your first one.</div>${addBox()}`;
+ if(!MODELS.includes(mSel))mSel=MODELS[0];
+ const av=m=>S.av[m.toLowerCase()]?`<img src="/_blob/${esc(S.av[m.toLowerCase()])}" alt="">`:esc(m[0]);
+ const cnt=m=>PLATS.filter(p=>S.models.some(x=>x.id===K(m,p))).length;
+ const chips=MODELS.map(m=>`<button class="${m===mSel?"p":"s"} mc" data-m="${m}"><span class="av sm">${av(m)}</span>${m} ${cnt(m)}/6</button>`).join("");
+ const cards=PLATS.map(p=>{const id=K(mSel,p),a=S.models.find(x=>x.id===id)||{},c=S.creds[id]||{},on=!!a.name;
+  return `<div class="pc" data-p="${p}"><div class="ph">${LOGO[p]}<span>${p}</span>${on?chip("Saved","ok"):chip("Empty")}</div>
+<label>Link<input class="f-url" value="${esc(a.url||BASE[p])}"></label>
+<label>Email<input class="f-em" type="email" value="${esc(a.email)}"></label>
+<label>Profile name<input class="f-pn" value="${esc(a.pname)}"></label>
+<label>Profile notes<input class="f-pb" value="${esc(a.pnote)}" placeholder="Bio, followers, anything to track"></label>${a.pupd?`<div class="mu" style="font-size:12px">Profile updated ${fd(a.pupd)}</div>`:""}${a.by?`<div class="mu" style="font-size:12px">Last saved by <b>${esc(a.by)}</b> · ${fd(a.byAt)}</div>`:""}
+<label>Password${isAdmin?`<div class="row"><input class="f-pw" type="password" autocomplete="off" value="${esc(c.pw)}" style="flex:1;min-width:100px"><button class="s" data-show="${id}">Show</button><button class="s" data-copy="${id}">Copy</button></div>`:`<div class="mu">Restricted</div>`}</label>
+<div class="row"><button class="p" data-save="${id}">Save</button>${a.url?`<a href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">Open ↗</a>`:""}${on?delBtn("models",id,mSel+" "+p):""}</div></div>`}).join("");
+ return `<div class="row" style="margin-bottom:12px">${chips}${SUPER?`<button class="s" data-add="1">+ Add model</button>`:""}</div>${adding?addBox():""}<div class="card prof"><div class="av">${av(mSel)}</div><div><h2 style="margin:0">${mSel}</h2><div class="mu">${cnt(mSel)}/6 platforms saved</div><div class="mu" style="font-size:12px;max-width:520px">Platforms block automatic profile retrieval, so update the profile name and notes by hand on each card.</div><div class="row" style="margin-top:8px">${!SUPER?"":confirmId==="m:"+mSel?`<button class="s d" data-rm="1">Confirm remove model</button>`:`<button class="s" data-rmask="1">Remove model</button>`}</div>${A?`<div class="row" style="margin-top:8px"><label class="upl">${S.av[mSel.toLowerCase()]?"Change photo":"Upload photo"}<input type="file" accept="image/*" id="avf" hidden></label>${S.av[mSel.toLowerCase()]?`<button class="s d" data-avdel="1">Remove</button>`:""}</div>`:""}</div></div><div class="cg">${cards}</div>${histView(mSel)}`}
+function modelViewOld(){
+ const chips=MODELS.map(m=>{const n=PLATS.filter(p=>S.models.some(x=>x.id===K(m,p))).length;return `<button class="${m===mSel?"p":"s"}" data-m="${m}">${m} ${n}/6</button>`}).join("");
+ const rows=PLATS.map(p=>{const id=K(mSel,p),a=S.models.find(x=>x.id===id)||{},c=S.creds[id]||{};
+  return `<tr data-p="${p}"><td><b>${p}</b></td><td><input class="f-url" value="${esc(a.url||BASE[p])}"></td><td><input class="f-em" type="email" value="${esc(a.email)}"></td><td>${isAdmin?`<div class="row"><input class="f-pw" type="password" autocomplete="off" value="${esc(c.pw)}" style="min-width:120px;width:140px"><button class="s" data-show="${id}">Show</button><button class="s" data-copy="${id}">Copy</button></div>`:'<span class="mu">Restricted</span>'}</td><td><div class="row"><button class="p" data-save="${id}">Save</button>${a.name?delBtn("models",id,mSel+" "+p):""}</div></td></tr>`}).join("");
+ return `<div class="row" style="margin-bottom:12px">${chips}</div><div class="card tw"><h3 style="margin:0 0 8px">${mSel}</h3><table><thead><tr><th>Platform</th><th>Link</th><th>Email</th><th>Password</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`}
+function modelForm(){const m=S.models.find(x=>x.id===editId)||{},c=S.creds[editId]||{};
+ return `<div class="card"><p class="note">${isAdmin?"Passwords are kept in a restricted area that only Editors and the owner can read.":"Only Editors and the owner can add or see passwords."}</p>
+ <form id="fm"><label>Model name<input name="name" required value="${esc(m.name)}"></label>
+ <label>Platform<select name="platform">${PLATS.map(p=>`<option ${p===m.platform?"selected":""}>${p}</option>`).join("")}</select></label>
+ <label>Platform link<input name="url" value="${esc(m.url)}" placeholder="https://…"></label>
+ <label>Email<input type="email" name="email" value="${esc(m.email)}"></label>
+ ${isAdmin?`<label>Password<input name="pw" type="password" autocomplete="off" value="${esc(c.pw)}"></label>`:""}
+ <div class="row"><button class="p">${editId?"Save changes":"Add account"}</button>${editId?`<button type="button" class="s" id="cx">Cancel</button>`:""}</div></form></div>`}
+function avh(m){return S.av[m.toLowerCase()]?`<img src="/_blob/${esc(S.av[m.toLowerCase()])}" alt="">`:esc(m[0]||"")}
+function typeOpts(p){return TYPES[p].map(t=>`<option>${t}</option>`).join("")}
+function dlabel(){return selD?"Posting on "+fd(selD):"No date yet. Pick a day on the calendar below."}
+function dsel(){const e=$("#dsel");if(e)e.textContent=dlabel()}
+function schedForm(){
+ if(!MODELS.length)return `<div class="card">Add a model first in Models & Accounts.</div>`;
+ if(!MODELS.includes(mSch))mSch=MODELS[0];
+ const chips=MODELS.map(m=>`<button class="${m===mSch?"p":"s"} mc" data-sm="${m}"><span class="av sm">${avh(m)}</span>${m}</button>`).join("");
+ return `<div class="row" style="margin-bottom:12px">${chips}</div>
+<div class="card"><div class="prof" style="margin-bottom:16px"><div class="av" style="width:56px;height:56px;font-size:22px">${avh(mSch)}</div><div><h2 style="margin:0">${mSch}</h2><span class="pill" id="dsel">${dlabel()}</span></div></div>
+<form id="sf" class="sf"><label class="big"><b id="cl">Caption</b><textarea name="caption" placeholder="Write the caption for this post"></textarea></label>
+<label class="big"><b>Media link</b><input name="media" placeholder="Paste the Drive or Dropbox link"></label>
+${A?`<div class="row"><label class="upl">Or upload an image or video<input type="file" id="mf" accept="image/*,video/*" hidden></label><span class="mu" id="mfn"></span></div>`:""}
+<div class="sr"><span class="mu">Platforms (choose one or more)</span><div class="row">${PLATS.map((p,i)=>`<label class="pk"><input class="vh" type="checkbox" name="platform" value="${p}"${i?"":" checked"}><span class="lg">${LOGO[p]}</span>${p}</label>`).join("")}</div></div>
+<div class="sr"><span class="mu">Content type</span><div class="row" id="tp"></div></div>
+
+<div class="row"><button class="p" id="sb">Add to schedule</button><button type="button" class="s" id="scx" hidden>Cancel edit</button></div></form></div>`}
+function schedFormOld(){
+ if(!MODELS.length)return `<div class="card">Add a model first in Models & Accounts.</div>`;
+ if(!MODELS.includes(mSch))mSch=MODELS[0];
+ const chips=MODELS.map(m=>`<button class="${m===mSch?"p":"s"} mc" data-sm="${m}"><span class="av sm">${avh(m)}</span>${m}</button>`).join("");
+ return `<div class="row" style="margin-bottom:12px">${chips}</div>
+<div class="card"><div class="prof" style="margin-bottom:12px"><div class="av" style="width:56px;height:56px;font-size:22px">${avh(mSch)}</div><div><h2 style="margin:0">${mSch}</h2><div class="mu">Schedule new content</div></div></div>
+<form id="sf"><label>Platform<select name="platform">${PLATS.map(p=>`<option>${p}</option>`).join("")}</select></label>
+<label>Content type<select name="type">${typeOpts(PLATS[0])}</select></label>
+<label>Publish date & time (optional)<input type="datetime-local" name="when"></label>
+<label>Media link (optional)<input name="media" placeholder="Drive / Dropbox link"></label>
+<label class="wide"><span id="cl">Caption (optional)</span><textarea name="caption"></textarea></label>
+<div class="wide" id="alsoW"><div class="mu" style="font-size:12px;margin-bottom:4px">Also post to</div><div class="row" id="also"></div></div>
+<div class="row"><span id="pl">${LOGO[PLATS[0]]}</span><button class="p" id="sb">Add to schedule</button><button type="button" class="s" id="scx" hidden>Cancel edit</button></div></form></div>`}
+function nowL(){const d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,16)}
+function wireSched(){
+ $("#form").querySelectorAll("[data-sm]").forEach(b=>b.onclick=()=>{mSch=b.dataset.sm;editPost=null;showForm();list()});
+ const sf=$("#sf");if(!sf)return;pm=null;const el=sf.elements;
+ const plats=()=>[...sf.querySelectorAll('input[name="platform"]:checked')].map(x=>x.value);
+ const ct=()=>{$("#cl").textContent=el.type&&el.type.value==="Text post"?"Text":"Caption"};
+ const sync=()=>{const ps=plats(),ts=ps.length?TYPES[ps[0]].filter(t=>ps.every(p=>TYPES[p].includes(t))):[],cur=el.type?el.type.value:"",pick=ts.includes(cur)?cur:ts[0];
+  $("#tp").innerHTML=ts.length?ts.map(t=>`<label class="tg"><input class="vh" type="radio" name="type" value="${t}"${t===pick?" checked":""}><span>${t}</span></label>`).join(""):'<span class="mu">Choose at least one platform.</span>';ct()};
+ sf.onchange=e=>{if(e.target.name==="platform")sync();else if(e.target.name==="type")ct()};
+ sync();
+ const mf=$("#mf");if(mf)mf.onchange=async()=>{const f=mf.files[0],mn=$("#mfn");if(!f)return;const vid=f.type.startsWith("video");if(vid&&f.size>20*1024*1024){mn.textContent="Video is over 20 MB. Paste a link instead.";mf.value="";return}
+  mn.textContent="Uploading…";try{const r=await A.upload(vid?f:await shrink(f,1600));pm={id:r.id,type:vid?"video":"image"};mn.textContent="Attached: "+f.name}catch(e){pm=null;mn.textContent="Upload failed: "+(e&&(e.message||e.code)||"error")}};
+ if(editPost){sf.querySelectorAll('input[name="platform"]').forEach(x=>x.checked=x.value===editPost.platform);sync();if(el.type&&editPost.type)el.type.value=editPost.type;ct();el.caption.value=editPost.caption||"";el.media.value=editPost.media||"";$("#sb").textContent="Save changes";$("#scx").hidden=false;$("#scx").onclick=()=>{editPost=null;showForm()}}
+ sf.onsubmit=e=>{e.preventDefault();const v=Object.fromEntries(new FormData(sf)),m=mSch,pls=plats();if(!m)return;if(!pls.length)return alert("Choose at least one platform.");if(!v.type)return alert("Choose a content type.");
+  const base={caption:(v.caption||"").trim(),media:safeUrl((v.media||"").trim()),when:selD||"",type:v.type,mediaId:pm?pm.id:(editPost&&editPost.mediaId)||"",mediaType:pm?pm.type:(editPost&&editPost.mediaType)||""};
+  if(editPost){const id=editPost.id;editPost=null;write(()=>db.collection("posts").doc(id).update({...base,platform:pls[0],modelId:K(m,pls[0]),editedBy:WHO(),editedAt:Date.now()}),"Edited content",`${m} · ${pls[0]} ${v.type}`);showForm();return}
+  write(async()=>{for(const pl of pls)await db.collection("posts").add({modelId:K(m,pl),modelName:m,platform:pl,handle:"",...base,createdBy:WHO(),status:"",qa:"Pending",qaNotes:"",postedUrl:"",created:Date.now()})},"Scheduled content",`${m} · ${pls.join(", ")} ${v.type}${selD?" · "+selD:""}`);
+  sf.reset();pm=null;const mn2=$("#mfn");if(mn2)mn2.textContent="";sync()}}
+function wireSchedOld3(){
+ $("#form").querySelectorAll("[data-sm]").forEach(b=>b.onclick=()=>{mSch=b.dataset.sm;editPost=null;showForm();list()});
+ const sf=$("#sf");if(!sf)return;const el=sf.elements;
+ pm=null;const typeHtml=p=>TYPES[p].map((t,i)=>`<label class="tg"><input class="vh" type="radio" name="type" value="${t}"${i?"":" checked"}><span>${t}</span></label>`).join("");
+ const ct=()=>{$("#cl").textContent=el.type.value==="Text post"?"Text":"Caption"};
+ const also=()=>{const p=el.platform.value,t=el.type.value;$("#also").innerHTML=PLATS.filter(x=>x!==p&&TYPES[x].includes(t)).map(x=>`<label class="pk"><input class="vh" type="checkbox" name="also" value="${x}"><span class="lg">${LOGO[x]}</span>${x}</label>`).join("")||'<span class="mu">None for this type</span>';$("#alsoW").hidden=!!editPost};
+ const sync=()=>{$("#tp").innerHTML=typeHtml(el.platform.value);ct();also()};
+ sf.onchange=e=>{if(e.target.name==="platform")sync();else if(e.target.name==="type"){ct();also()}};
+ const mf=$("#mf");if(mf)mf.onchange=async()=>{const f=mf.files[0],mn=$("#mfn");if(!f)return;const vid=f.type.startsWith("video");if(vid&&f.size>20*1024*1024){mn.textContent="Video is over 20 MB. Paste a link instead.";mf.value="";return}
+  mn.textContent="Uploading…";try{const r=await A.upload(vid?f:await shrink(f,1600));pm={id:r.id,type:vid?"video":"image"};mn.textContent="Attached: "+f.name}catch(e){pm=null;mn.textContent="Upload failed: "+(e&&(e.message||e.code)||"error")}};
+ sync();
+ if(editPost){el.platform.value=editPost.platform;sync();el.type.value=editPost.type||el.type.value;ct();also();el.caption.value=editPost.caption||"";el.media.value=editPost.media||"";$("#sb").textContent="Save changes";$("#scx").hidden=false;$("#scx").onclick=()=>{editPost=null;showForm()}}
+ sf.onsubmit=e=>{e.preventDefault();const f2=new FormData(sf),v=Object.fromEntries(f2),m=mSch;if(!m)return;
+  const base={caption:(v.caption||"").trim(),media:safeUrl((v.media||"").trim()),when:selD||"",type:v.type,mediaId:pm?pm.id:(editPost&&editPost.mediaId)||"",mediaType:pm?pm.type:(editPost&&editPost.mediaType)||""};
+  if(editPost){const id=editPost.id;editPost=null;write(()=>db.collection("posts").doc(id).update({...base,platform:v.platform,modelId:K(m,v.platform)}),"Edited content",`${m} · ${v.platform} ${v.type}`);showForm();return}
+  const pls=[v.platform,...f2.getAll("also")];
+  write(async()=>{for(const pl of pls)await db.collection("posts").add({modelId:K(m,pl),modelName:m,platform:pl,handle:"",...base,status:"Scheduled",qa:"Pending",qaNotes:"",postedUrl:"",created:Date.now()})},"Scheduled content",`${m} · ${pls.join(", ")} ${v.type}${selD?" · "+selD:""}`);pm=null;const mn2=$("#mfn");if(mn2)mn2.textContent="";
+  sf.reset();sync()}}
+function wireSchedOld2(){
+ $("#form").querySelectorAll("[data-sm]").forEach(b=>b.onclick=()=>{mSch=b.dataset.sm;editPost=null;showForm();list()});
+ const sf=$("#sf");if(!sf)return;const el=sf.elements;
+ const ct=()=>{$("#cl").textContent=el.type.value==="Text post"?"Text (optional)":"Caption (optional)"};
+ const also=()=>{const p=el.platform.value,t=el.type.value;$("#also").innerHTML=editPost?"":PLATS.filter(x=>x!==p&&TYPES[x].includes(t)).map(x=>`<label style="flex-direction:row;align-items:center;gap:5px;color:var(--tx)"><input type="checkbox" name="also" value="${x}" style="width:auto"><span class="lg">${LOGO[x]}</span>${x}</label>`).join("")||'<span class="mu">No other platform supports this type.</span>';$("#alsoW").hidden=!!editPost};
+ const sync=()=>{const p=el.platform.value;el.type.innerHTML=typeOpts(p);$("#pl").innerHTML=LOGO[p];ct();also()};
+ el.platform.onchange=sync;el.type.onchange=()=>{ct();also()};
+ if(editPost){el.platform.value=editPost.platform;sync();el.type.value=editPost.type||el.type.value;ct();el.when.value=editPost.when||"";el.media.value=editPost.media||"";el.caption.value=editPost.caption||"";$("#sb").textContent="Save changes";$("#scx").hidden=false;$("#scx").onclick=()=>{editPost=null;showForm()}}else also();
+ sf.onsubmit=e=>{e.preventDefault();const f2=new FormData(sf),v=Object.fromEntries(f2),m=mSch;if(!m)return;
+  const base={caption:(v.caption||"").trim(),media:safeUrl((v.media||"").trim()),when:v.when||"",type:v.type};
+  if(editPost){const id=editPost.id;editPost=null;write(()=>db.collection("posts").doc(id).update({...base,platform:v.platform,modelId:K(m,v.platform)}),"Edited content",`${m} · ${v.platform} ${v.type}`);showForm();return}
+  const pls=[v.platform,...f2.getAll("also")];
+  write(async()=>{for(const pl of pls)await db.collection("posts").add({modelId:K(m,pl),modelName:m,platform:pl,handle:"",...base,status:"Scheduled",qa:"Pending",qaNotes:"",postedUrl:"",created:Date.now()})},"Scheduled content",`${m} · ${pls.join(", ")} ${v.type}${v.when?" · "+v.when:""}`);
+  sf.reset();sync()}}
+function wireSchedOld(){
+ $("#form").querySelectorAll("[data-sm]").forEach(b=>b.onclick=()=>{mSch=b.dataset.sm;showForm();list()});
+ const sf=$("#sf");if(!sf)return;const el=sf.elements;
+ const ct=()=>{$("#cl").textContent=el.type.value==="Text post"?"Text (optional)":"Caption (optional)"};
+ const sync=()=>{const p=el.platform.value;el.type.innerHTML=typeOpts(p);$("#pl").innerHTML=LOGO[p];ct()};
+ el.platform.onchange=sync;el.type.onchange=ct;
+ sf.onsubmit=e=>{e.preventDefault();const v=Object.fromEntries(new FormData(sf)),m=mSch;if(!m)return;
+  write(()=>db.collection("posts").add({modelId:K(m,v.platform),modelName:m,platform:v.platform,type:v.type,handle:"",caption:(v.caption||"").trim(),media:safeUrl((v.media||"").trim()),when:v.when||"",status:"Scheduled",qa:"Pending",qaNotes:"",postedUrl:"",created:Date.now()}),"Scheduled content",`${m} · ${v.platform} ${v.type}${v.when?" · "+v.when:""}`);
+  sf.reset();sync()}}
+function schedList(){
+ if(!mSch)return "";
+ const P=S.posts.filter(p=>!smf||p.modelName===smf).sort(byModel),n=f=>P.filter(f).length,PV=selD?P.filter(p=>(p.when||"").slice(0,10)===selD):P;
+ const st=[["Total",P.length],["With date",n(p=>p.when&&p.status!=="Posted")],["No date yet",n(p=>!p.when&&p.status!=="Posted")],["Posted",n(p=>p.status==="Posted")]];
+ return `<div class="row" style="margin-bottom:12px"><select id="smf" style="max-width:190px"><option value="">All models</option>${MODELS.map(m=>`<option ${m===smf?"selected":""}>${m}</option>`).join("")}</select></div>`+strip(P)+`<div class="grid" style="margin-bottom:14px">${st.map(([k,v])=>`<div class="card stat" style="margin:0"><b>${v}</b><span>${k}</span></div>`).join("")}</div>`+
+ table(["Date","Model","Platform","Type","Caption","Media","Status","QA","By",""],PV.map(p=>`<tr><td>${p.when?fd(p.when)+(isOpen(p)&&p.when.slice(0,10)<nowL().slice(0,10)?" "+chip("Overdue","er"):""):'<span class="mu">No date</span>'}</td><td>${esc(p.modelName)}</td><td><div class="row">${LOGO[p.platform]?`<span class="lg">${LOGO[p.platform]}</span>`:""}${esc(p.platform)}</div></td><td>${chip(p.type||"Post")}</td><td>${esc(p.caption)||'<span class="mu">—</span>'}</td><td>${thumb(p)}</td><td>${p.status&&p.status!=="Scheduled"?chip(p.status,p.status==="Posted"?"ok":""):'<span class="mu">—</span>'}</td><td>${chip(p.qa,qaC(p.qa))}</td><td>${whoSched(p)}</td><td><div class="row"><button class="s" data-pe="${p.id}">Edit</button><button class="s" data-pd="${p.id}">Duplicate</button>${delBtn("posts",p.id,p.modelName)}</div></td></tr>`))}
+let psf="All",pmf="";
+function postList(){
+ const ST=["All","No status","Posted","Not posted","Other"];
+ const P=S.posts.filter(p=>(psf==="All"||(psf==="No status"?isOpen(p):p.status===psf))&&(!pmf||p.modelName===pmf)).sort(byModel);
+ const cnt=s=>S.posts.filter(p=>(!pmf||p.modelName===pmf)&&(s==="All"||(s==="No status"?isOpen(p):p.status===s))).length;
+ const sc=s=>s==="Posted"?"ok":s==="Not posted"?"er":s==="Other"?"wn":"";
+ const bar=`<div class="row" style="margin-bottom:12px">${ST.map(s=>`<button class="${s===psf?"p":"s"}" data-pf="${s}">${s} ${cnt(s)}</button>`).join("")}</div>`;
+ return bar+table(["When","Model","Platform","Content","QA","Status / action","Who"],P.map(p=>`<tr><td>${p.when?fd(p.when):'<span class="mu">No date</span>'}</td><td>${esc(p.modelName)}</td><td><div class="row">${LOGO[p.platform]?`<span class="lg">${LOGO[p.platform]}</span>`:""}<span>${esc(p.platform)}${p.type?`<br><span class="mu">${esc(p.type)}</span>`:""}</span></div></td><td>${esc((p.caption||"").slice(0,80))}${thumb(p)}</td><td>${chip(p.qa,qaC(p.qa))}</td><td>${p.status==="Scheduled"||!p.status?`<input id="pn${p.id}" placeholder="Notes (required for Other)"><input id="pu${p.id}" placeholder="Live post URL (optional)" style="margin-top:6px"><select id="ps${p.id}" style="margin-top:6px"><option value="">Select status…</option><option value="Posted">Posted done</option><option value="Not posted">Not posted done</option><option value="Other">Other</option></select><button class="p" data-ps="${p.id}" style="margin-top:6px">Save status</button>`:`<div class="row">${chip(p.status,sc(p.status))}${p.postedUrl?link(p.postedUrl):""}<button class="s" data-undo="${p.id}">Reopen</button></div>${p.statusNote?`<div class="mu" style="margin-top:4px">${esc(p.statusNote)}</div>`:""}`}</td><td>${whoLine("Status set by",p.statusBy,p.statusAt)}${whoLine("Scheduled by",p.createdBy,p.created)}</td></tr>`))}
+let qmf="";
+const pcell=p=>`<div class="row">${LOGO[p.platform]?`<span class="lg">${LOGO[p.platform]}</span>`:""}<span>${esc(p.platform)}${p.type?`<br><span class="mu">${esc(p.type)}</span>`:""}</span></div>`;
+const ccell=p=>`${esc((p.caption||"").slice(0,80))} ${thumb(p)}`;
+function qaList(){
+ const P=S.posts.filter(p=>p.status==="Posted"&&p.qa!=="Approved"&&(!qsel||p.modelName===qsel)).sort(byModel);
+ return `<p class="note">Content appears here once it is marked Posted. Approved items move to QA Records.</p>`+table(["Posted","Model","Platform","Content","Live post","Status","Notes & decision","Who"],P.map(p=>`<tr><td>${p.postedAt?fd(p.postedAt):"—"}</td><td>${esc(p.modelName)}</td><td>${pcell(p)}</td><td>${ccell(p)}</td><td><input id="lu${p.id}" data-qin="lu|${p.id}" value="${esc(QD[p.id]&&QD[p.id].lu!==undefined?QD[p.id].lu:(p.postedUrl||""))}" placeholder="https://… live post URL" style="min-width:170px">${p.postedUrl?`<div style="margin-top:4px">${link(p.postedUrl)}</div>`:""}</td><td>${chip(p.qa,qaC(p.qa))}</td><td><input id="n${p.id}" data-qin="n|${p.id}" value="${esc(QD[p.id]&&QD[p.id].n!==undefined?QD[p.id].n:p.qaNotes)}" placeholder="Check caption, media, tags, links…"><div class="ck">${CHECKS.map(c=>`<label><input type="checkbox" data-ck="${p.id}" value="${c}"${((QD[p.id]&&QD[p.id].ck)||p.qaChecks||[]).includes(c)?" checked":""}>${c}</label>`).join("")}</div><div class="row" style="margin-top:6px"><button class="p" data-qa="${p.id}|Approved">Approve</button><button class="s d" data-qa="${p.id}|Needs fix">Needs fix</button></div><div class="mu" style="font-size:12px;margin-top:6px">To approve: enter a valid Live URL and tick all four checks.</div></td><td>${whoLine("Marked posted by",p.statusBy,p.statusAt)}${whoLine("Last QA by",p.qaBy,p.qaAt)}</td></tr>`))}
+function qrecList(){
+ const A=S.posts.filter(p=>p.status==="Posted"&&p.qa==="Approved"&&(!qmf||p.modelName===qmf)).sort((a,b)=>(MODELS.indexOf(a.modelName)-MODELS.indexOf(b.modelName))||((b.qaAt||0)-(a.qaAt||0)));
+ const sel=`<div class="row" style="margin-bottom:12px"><span class="mu">${A.length} approved</span></div>`;
+ return sel+table(["Approved","Model","Platform","Content","Live post","Posted","QA notes","Checks","Approved by",""],A.map(p=>`<tr><td>${p.qaAt?fd(p.qaAt):"—"}</td><td>${esc(p.modelName)}</td><td>${pcell(p)}</td><td>${ccell(p)}</td><td>${p.postedUrl?link(p.postedUrl):'<span class="mu">No URL</span>'}</td><td>${p.postedAt?fd(p.postedAt):"—"}</td><td>${esc(p.qaNotes)||'<span class="mu">—</span>'}</td><td>${(p.qaChecks||[]).length?`<span class="chip ok">${p.qaChecks.length}/${CHECKS.length} checks</span>`:'<span class="mu">—</span>'}</td><td>${esc(p.qaBy)||'<span class="mu">—</span>'}${whoLine("Posted by",p.statusBy,p.statusAt)}</td><td><button class="s" data-qr="${p.id}">Send back to QA</button></td></tr>`))}
+let selD=null,stripX=null,pm=null;const QD={};const WHO=()=>ME.name||"Unknown user";
+const byModel=(a,b)=>{const x=MODELS.indexOf(a.modelName),y=MODELS.indexOf(b.modelName);return (x<0?99:x)-(y<0?99:y)||byWhen(a,b)};
+const whoLine=(l,n,t)=>n?`<div class="mu" style="font-size:12px;white-space:nowrap">${l} <b>${esc(n)}</b>${t?" · "+fd(t):""}</div>`:"";
+const whoSched=p=>whoLine("Scheduled by",p.createdBy||"—",p.created)+whoLine("Edited by",p.editedBy,p.editedAt);const CHECKS=["Caption correct","Right media","Link works","Posted on time"];const isOpen=p=>!p.status||p.status==="Scheduled";
+const pad2=n=>String(n).padStart(2,"0");
+const dkey=d=>d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate());
+function strip(P){
+ const today=nowL().slice(0,10),base=new Date(),cnt={};
+ P.forEach(p=>{if(p.when){const k=p.when.slice(0,10);cnt[k]=(cnt[k]||0)+1}});
+ let cards="";
+ for(let i=-7;i<=35;i++){const d=new Date(base.getFullYear(),base.getMonth(),base.getDate()+i),k=dkey(d),c=cnt[k]||0;
+  cards+=`<button class="dc${k===selD?" on":""}${k===today?" td":""}" data-d="${k}"><span class="dw">${d.toLocaleDateString([],{weekday:"short"})}</span><b>${d.getDate()}</b><span class="dm">${d.toLocaleDateString([],{month:"short"})}</span><span class="dn${c?" has":""}">${c?c+(c===1?" drop":" drops"):"—"}</span></button>`}
+ const lab=selD?"Selected: "+new Date(selD+"T12:00").toLocaleDateString([],{month:"short",day:"numeric",year:"numeric"}):"Showing all dates";
+ return `<div class="card cs"><div class="row" style="justify-content:space-between;margin-bottom:12px"><div class="row"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${IC.sched}</svg><b>Content calendar</b><span class="pill">${lab}</span></div><div class="row"><button class="p" data-today="1">Today</button><button class="s" data-dall="1">Show all</button></div></div><div class="ds" id="strip">${cards}</div></div>`}
+function thumb(p){if(p.mediaId)return `<a href="/_blob/${esc(p.mediaId)}" target="_blank" rel="noopener noreferrer">View media</a>`;return p.media?link(p.media):""}
+function thumbOld(p){if(p.mediaId){const u="/_blob/"+esc(p.mediaId);return p.mediaType==="video"?`<video class="mt" src="${u}" controls preload="metadata"></video>`:`<a href="${u}" target="_blank" rel="noopener"><img class="mt" src="${u}" alt=""></a>`}return p.media?link(p.media):""}
+function coverage(){
+ const t0=nowL().slice(0,10),d=new Date(),t1=dkey(new Date(d.getFullYear(),d.getMonth(),d.getDate()+6)),c={};
+ S.posts.forEach(p=>{if(isOpen(p)&&p.when){const k=p.when.slice(0,10);if(k>=t0&&k<=t1){const id=p.modelName+"|"+p.platform;c[id]=(c[id]||0)+1}}});
+ let gaps=0;
+ const rows=MODELS.map(m=>`<tr><td><div class="row"><span class="av sm">${avh(m)}</span><b>${esc(m)}</b></div></td>${PLATS.map(p=>{const n=c[m+"|"+p]||0;if(!n)gaps++;return `<td class="cv ${n?"ok":"gap"}" data-cv="${m}">${n||"—"}</td>`}).join("")}</tr>`).join("");
+ return `<h3>Next 7 days coverage <span class="pill">${gaps} gaps</span></h3><div class="card tw"><table><thead><tr><th>Model</th>${PLATS.map(p=>`<th><div class="row"><span class="lg">${LOGO[p]}</span>${p}</div></th>`).join("")}</tr></thead><tbody>${rows}</tbody></table></div>`}
+function histView(m){const H=S.hist.filter(h=>h.model===m).sort((a,b)=>b.ts-a.ts).slice(0,60);
+ return `<h3>Change history for ${esc(m)}</h3>`+table(["When","Who","Platform","Field","Previous","New"],H.map(h=>`<tr><td>${fd(h.ts)}</td><td>${esc(h.who)}</td><td>${esc(h.platform)}</td><td>${esc(h.field)}</td><td>${esc(h.from)||'<span class="mu">—</span>'}</td><td>${esc(h.to)||'<span class="mu">—</span>'}</td></tr>`))+`<p class="note">Passwords are masked in history. An entry shows that a password changed, who changed it and when.</p>`}
+let ALLM=MODELS.slice(),T=[],SUPER=false,ISOWN=false,ALLOWED=null,MEMBER=null,waiting=false,REQ=[];
+const canSee=n=>!ALLOWED||ALLOWED.includes(n);
+const tabOk=k=>(k==="team"||k==="store")?!!SUPER:true;
+IC.team='<circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/>';SUB.team="Who can use the system and which models they handle";
+function applyAccess(){const t=T.find(x=>x.uid&&x.uid===ME.id);MEMBER=t||null;SUPER=!!(ISOWN||(t&&t.role==="Super Admin"));ALLOWED=SUPER?null:(t?(t.models||[]):[]);MODELS=ALLM.filter(canSee);
+ const el=$(".sbfoot span");if(el)el.innerHTML=`<b>${esc(ME.name||"Team member")}</b><br>${SUPER?"Super Admin":(t?"Specialist":"No access")}`;
+ if(!tabOk(tab))tab="dash";nav()}
+function teamList(){
+ const linked=new Set(T.filter(t=>t.uid).map(t=>t.uid)),pend=REQ.filter(r=>!linked.has(r.id)),free=T.filter(t=>!t.uid);
+ const reqs=pend.length?`<h3>Access requests</h3>`+table(["Name","Link to team member",""],pend.map(r=>`<tr><td>${esc(r.name)||"New user"}</td><td><select id="lk${r.id}"><option value="">Select team member</option>${free.map(t=>`<option value="${esc(t.email)}">${esc(t.name)}</option>`).join("")}</select></td><td><button class="p" data-ap="${r.id}">Approve</button></td></tr>`)):`<p class="note">No pending access requests.</p>`;
+ return reqs+`<h3>Team</h3><p class="note">Super Admins see every model. Specialists only see their assigned models.</p>`+table(["Name","Work email","Role","Models","Access",""],T.slice().sort((a,b)=>(a.role===b.role?0:a.role==="Super Admin"?-1:1)||(a.name||"").localeCompare(b.name||"")).map(t=>`<tr><td>${esc(t.name)}</td><td>${esc(t.email)}</td><td>${chip(t.role,t.role==="Super Admin"?"ok":"")}</td><td>${t.role==="Super Admin"?'<span class="mu">All models</span>':(t.models||[]).map(m=>chip(m)).join(" ")}</td><td>${t.uid?chip("Linked","ok"):chip("Not linked","wn")}</td><td>${t.uid&&t.role!=="Super Admin"?`<button class="s d" data-rv="${esc(t.email)}">Revoke</button>`:""}</td></tr>`))}
+function teamListOld(){return `<p class="note">Super Admins see every model. Specialists only see and work on their assigned models.</p>`+table(["Name","Work email","Role","Models"],T.slice().sort((a,b)=>(a.role===b.role?0:a.role==="Super Admin"?-1:1)||(a.name||"").localeCompare(b.name||"")).map(t=>`<tr><td>${esc(t.name)}</td><td>${esc(t.email)}</td><td>${chip(t.role,t.role==="Super Admin"?"ok":"")}</td><td>${t.role==="Super Admin"?'<span class="mu">All models</span>':(t.models||[]).map(m=>chip(m)).join(" ")}</td></tr>`))}
+function recent(){if(!SUPER)return "";const L=S.log.slice().sort((a,b)=>b.ts-a.ts).slice(0,8);return `<h3>Recent activity</h3>`+table(["Time","Who","Action","Details"],L.map(l=>`<tr><td>${fd(l.ts)}</td><td>${esc(l.who)||'<span class="mu">—</span>'}</td><td>${esc(l.action)}</td><td>${esc(l.summary)}</td></tr>`))}
+let lsort="new",qsel="",logOpen=null;
+const LSORTS=[["new","Newest first"],["old","Oldest first"],["who","Who (A to Z)"],["action","Action (A to Z)"],["model","Model"]];
+let lmf="";const lmodel=l=>l.model||MODELS.find(m=>(l.summary||"").includes(m))||"";
+function sortedLog(){const L=S.log.filter(l=>!lmf||(lmf==="__other"?!lmodel(l):lmodel(l)===lmf)),c=(a,b)=>String(a||"").localeCompare(String(b||"")),mi=l=>(MODELS.indexOf(lmodel(l))+1)||99;
+ L.sort((a,b)=>lsort==="old"?a.ts-b.ts:lsort==="who"?(c(a.who,b.who)||b.ts-a.ts):lsort==="action"?(c(a.action,b.action)||b.ts-a.ts):lsort==="model"?((mi(a)-mi(b))||b.ts-a.ts):b.ts-a.ts);return L.slice(0,200)}
+function logBar(){return `<div class="row" style="margin-bottom:10px"><label style="flex-direction:row;align-items:center;gap:8px">Sort by<select id="lsort" style="width:auto">${LSORTS.map(([k,v])=>`<option value="${k}"${k===lsort?" selected":""}>${v}</option>`).join("")}</select></label><span class="mu">${sortedLog().length} of ${S.log.length} entries. Click an entry for details.</span></div>`}
+function tiles(tab){
+ if(!MODELS.length)return `<div class="card">No models yet.</div>`;
+ const cnt={post:m=>{const L=S.posts.filter(p=>p.modelName===m);return [L.filter(isOpen).length+" to update",L.filter(p=>p.status==="Posted").length+" posted"]},qa:m=>[S.posts.filter(p=>p.modelName===m&&p.status==="Posted"&&p.qa!=="Approved").length+" awaiting QA"],qrec:m=>[S.posts.filter(p=>p.modelName===m&&p.status==="Posted"&&p.qa==="Approved").length+" approved"],store:m=>[S.log.filter(l=>lmodel(l)===m).length+" activities"]}[tab];
+ const items=MODELS.map(m=>({k:m,n:m,c:cnt(m)}));
+ if(tab==="store")items.push({k:"__other",n:"Other",c:[S.log.filter(l=>!lmodel(l)).length+" activities"]});
+ return `<div class="mg">${items.map(i=>`<button class="mt2" data-pick="${tab}|${i.k}"><span class="av">${i.k==="__other"?"•••":avh(i.n)}</span><b>${esc(i.n)}</b>${i.c.map(x=>`<span class="mu">${x}</span>`).join("")}</button>`).join("")}</div>`}
+function backBar(tab,m){const o=m==="__other";return `<div class="row" style="margin-bottom:16px"><button class="s" data-back="${tab}">← All models</button><span class="av sm">${o?"•":avh(m)}</span><b style="font-size:17px">${o?"Other activity":esc(m)}</b></div>`}
+function logDetail(l){
+ const m=lmodel(l),H=S.hist.filter(h=>h.who===l.who&&Math.abs(h.ts-l.ts)<20000&&(!m||h.model===m));
+ const rp=S.posts.find(p=>p.modelName===m&&[p.created,p.editedAt,p.statusAt,p.qaAt].some(t=>t&&Math.abs(t-l.ts)<20000));
+ const kv=(k,v)=>v?`<div><div class="mu" style="font-size:12px">${k}</div><div>${v}</div></div>`:"";
+ return `<tr class="lgd"><td colspan="5"><div class="lgp"><div class="dg">${kv("Date & time",esc(new Date(l.ts).toLocaleString([],{dateStyle:"full",timeStyle:"medium"})))}${kv("Done by",esc(l.who)||"Unknown user")}${kv("Action",esc(l.action))}${kv("Model",m?chip(m):"")}${kv("Details",esc(l.summary))}${kv("Entry ID",esc(l.id))}</div>`+
+ (rp?`<h4>Content</h4><div class="dg">${kv("Platform",esc(rp.platform)+(rp.type?" · "+esc(rp.type):""))}${kv("Scheduled for",rp.when?fd(rp.when):"No date")}${kv("Caption",esc(rp.caption))}${kv("Media",thumb(rp))}${kv("Posting status",esc(rp.status||"Not set")+(rp.statusNote?" · "+esc(rp.statusNote):""))}${kv("QA status",esc(rp.qa))}${kv("Live URL",rp.postedUrl?link(rp.postedUrl):"")}</div>`:"")+
+ (H.length?`<h4>Changes</h4>${H.map(h=>`<div>${esc(h.platform||"")} · <b>${esc(h.field)}</b>: ${esc(h.from)||"—"} → ${esc(h.to)||"—"}</div>`).join("")}`:"")+`</div></td></tr>`}
+function delBtn(col,id,label){return confirmId===id?`<button class="s d" data-del="${col}:${id}:${esc(label)}">Confirm delete</button>`:`<button class="s" data-ask="${id}">Delete</button>`}
+function wire(){
+ document.querySelectorAll("[data-show]").forEach(b=>b.onclick=()=>{const i=b.closest(".pc").querySelector(".f-pw");const on=i.type==="password";i.type=on?"text":"password";b.textContent=on?"Hide":"Show"});
+ document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=async()=>{try{await navigator.clipboard.writeText(b.closest(".pc").querySelector(".f-pw").value);b.textContent="Copied"}catch(e){alert("Copy blocked here. Use Show and copy manually.")}});
+ const af=$("#avf");if(af)af.onchange=async()=>{const f=af.files[0];if(!f)return;const name=mSel,key=name.toLowerCase(),old=S.av[key];try{const r=await A.upload(await shrink(f));await db.collection("avatars").doc(key).set({id:r.id});await db.collection("log").add({ts:Date.now(),action:"Updated photo",summary:name});if(old)try{await A.delete(old)}catch(e){}}catch(e){alert("Upload failed: "+(e&&(e.message||e.code)||"error"))}};
+ document.querySelectorAll("[data-avdel]").forEach(b=>b.onclick=()=>{const key=mSel.toLowerCase(),old=S.av[key],name=mSel;write(async()=>{await db.collection("avatars").doc(key).delete();if(old&&A)try{await A.delete(old)}catch(e){}},"Removed photo",name)});
+ document.querySelectorAll("[data-pe]").forEach(b=>b.onclick=()=>{editPost=S.posts.find(x=>x.id===b.dataset.pe)||null;if(editPost&&editPost.when)selD=editPost.when.slice(0,10);showForm();list();scrollTo(0,0)});
+ document.querySelectorAll("[data-pd]").forEach(b=>b.onclick=()=>{const p=S.posts.find(x=>x.id===b.dataset.pd);if(!p)return;const{id,...c}=p;write(()=>db.collection("posts").add({...c,createdBy:WHO(),editedBy:"",statusBy:"",qaBy:"",status:"",qa:"Pending",qaNotes:"",postedUrl:"",postedAt:null,created:Date.now()}),"Duplicated content",`${p.modelName} · ${p.platform}`)});
+ document.querySelectorAll("[data-pf]").forEach(b=>b.onclick=()=>{psf=b.dataset.pf;list()});
+ const pmi=$("#pmf");if(pmi)pmi.onchange=()=>{pmf=pmi.value;list()};
+ document.querySelectorAll("[data-ps]").forEach(b=>b.onclick=()=>{const id=b.dataset.ps,st=document.getElementById("ps"+id).value,p=S.posts.find(x=>x.id===id);if(!p)return;if(!st)return alert("Select a status first.");const note=document.getElementById("pn"+id).value.trim(),url=safeUrl(document.getElementById("pu"+id).value.trim());
+  if(st==="Other"&&!note)return alert("Please add a note explaining the status.");
+  write(()=>db.collection("posts").doc(id).update({status:st,statusNote:note,statusBy:WHO(),statusAt:Date.now(),postedUrl:st==="Posted"?url:"",postedAt:st==="Posted"?Date.now():null}),"Status: "+st,`${p.modelName} · ${p.platform} ${p.type||""}${note?" · "+note.slice(0,40):""}`)});
+ document.querySelectorAll("[data-qr]").forEach(b=>b.onclick=()=>{const p=S.posts.find(x=>x.id===b.dataset.qr);if(!p)return;write(()=>db.collection("posts").doc(p.id).update({qa:"Pending",qaAt:Date.now(),qaBy:WHO(),qaChecks:[]}),"QA sent back",`${p.modelName} · ${p.platform}`)});
+ const qmi=$("#qmf");if(qmi)qmi.onchange=()=>{qmf=qmi.value;list()};
+ document.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{selD=selD===b.dataset.d?null:b.dataset.d;dsel();list()});
+ document.querySelectorAll("[data-today]").forEach(b=>b.onclick=()=>{selD=nowL().slice(0,10);stripX=null;dsel();list()});
+ document.querySelectorAll("[data-dall]").forEach(b=>b.onclick=()=>{selD=null;dsel();list()});
+ const sp=$("#strip");if(sp){if(stripX==null){const on=sp.querySelector(".on")||sp.querySelector(".td");if(on)stripX=on.offsetLeft-sp.clientWidth/2+on.offsetWidth/2}sp.scrollLeft=stripX||0;sp.onscroll=()=>{stripX=sp.scrollLeft}}
+ document.querySelectorAll("[data-cv]").forEach(c=>c.onclick=()=>{mSch=c.dataset.cv;tab="sched";editPost=null;nav();showForm();list()});
+ const sm=$("#smf");if(sm)sm.onchange=()=>{smf=sm.value;list()};
+ document.querySelectorAll("[data-ap]").forEach(b=>b.onclick=()=>{const id=b.dataset.ap,em=document.getElementById("lk"+id).value;if(!em)return alert("Select which team member this person is.");write(()=>db.collection("team").doc(em).update({uid:id}),"Approved access",em)});
+ document.querySelectorAll("[data-rv]").forEach(b=>b.onclick=()=>{const em=b.dataset.rv;write(()=>db.collection("team").doc(em).update({uid:null}),"Revoked access",em)});
+ const ls=$("#lsort");if(ls)ls.onchange=()=>{lsort=ls.value;list()};const lm=$("#lmf");if(lm)lm.onchange=()=>{lmf=lm.value;list()};
+ const SELV={post:v=>{pmf=v;psf="All"},qa:v=>{qsel=v},qrec:v=>{qmf=v},store:v=>{lmf=v}};
+ document.querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>{const[t,m]=b.dataset.pick.split("|");SELV[t](m);logOpen=null;list();scrollTo(0,0)});
+ document.querySelectorAll("[data-back]").forEach(b=>b.onclick=()=>{SELV[b.dataset.back]("");logOpen=null;list()});
+ document.querySelectorAll("[data-lg]").forEach(r=>r.onclick=()=>{logOpen=logOpen===r.dataset.lg?null:r.dataset.lg;list()});
+ document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>{adding=true;list();const n=$("#nm");if(n)n.focus()});
+ document.querySelectorAll("[data-addx]").forEach(b=>b.onclick=()=>{adding=false;list()});
+ const nmi=$("#nm");if(nmi)nmi.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();$("[data-addgo]").click()}};
+ document.querySelectorAll("[data-addgo]").forEach(b=>b.onclick=()=>{let n=$("#nm").value.trim().replace(/\s+/g,"-");if(!/^[A-Za-z0-9_-]+$/.test(n))return alert("Use letters, numbers, dash or underscore only.");n=n[0].toUpperCase()+n.slice(1);if(MODELS.some(m=>m.toLowerCase()===n.toLowerCase()))return alert(n+" already exists.");adding=false;pend=n;write(()=>db.collection("roster").doc(n.toLowerCase()).set({name:n,order:Date.now()}),"Added model",n)});
+ document.querySelectorAll("[data-rmask]").forEach(b=>b.onclick=()=>{confirmId="m:"+mSel;list()});
+ document.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{const n=mSel,k=n.toLowerCase(),old=S.av[k];confirmId=null;const dl=async r=>{try{await r.delete()}catch(e){}};
+  write(async()=>{for(const p of PLATS){await dl(db.collection("models").doc(K(n,p)));if(isAdmin)await dl(db.collection("credentials").doc(K(n,p)))}await dl(db.collection("avatars").doc(k));if(old&&A)try{await A.delete(old)}catch(e){}await db.collection("roster").doc(k).delete()},"Removed model",n)});
+ document.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{mSel=b.dataset.m;confirmId=null;list()});
+ document.querySelectorAll("[data-save]").forEach(b=>b.onclick=()=>{const tr=b.closest(".pc"),id=b.dataset.save,p=tr.dataset.p,pw=tr.querySelector(".f-pw"),name=mSel;const url=safeUrl(tr.querySelector(".f-url").value.trim()),email=tr.querySelector(".f-em").value.trim(),pn=tr.querySelector(".f-pn").value.trim(),pb=tr.querySelector(".f-pb").value.trim();const old=S.models.find(x=>x.id===id)||{},oc=S.creds[id]||{},ch=[];[["Platform link",old.url||"",url],["Email",old.email||"",email],["Profile name",old.pname||"",pn],["Profile notes",old.pnote||"",pb]].forEach(([f,a,z])=>{if(a!==z&&(old.name||z))ch.push({field:f,from:a,to:z})});if(isAdmin&&pw&&(oc.pw||"")!==pw.value)ch.push({field:"Password",from:oc.pw?"••••••••":"",to:pw.value?"••••••••":"(blank)"});
+  write(async()=>{await db.collection("models").doc(id).set({name,platform:p,url,email,pname:pn,pnote:pb,pupd:(pn!==(old.pname||"")||pb!==(old.pnote||""))?Date.now():(old.pupd||null),by:ME.name||"Unknown user",byAt:Date.now()});if(isAdmin&&pw)await db.collection("credentials").doc(id).set({pw:pw.value});for(const c of ch)await db.collection("history").add({ts:Date.now(),who:ME.name||"Unknown user",whoId:ME.id,model:name,platform:p,...c})},"Saved account",`${name} · ${p}`)});
+ const qi=$("#q"),pi=$("#pf");if(qi)qi.oninput=()=>{q=qi.value;list();const n=$("#q");n.focus();n.setSelectionRange(q.length,q.length)};if(pi)pi.onchange=()=>{pf=pi.value;list()};
+ document.querySelectorAll("[data-ask]").forEach(b=>b.onclick=()=>{confirmId=b.dataset.ask;list()});
+ document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{const[c,id,l]=b.dataset.del.split(":");confirmId=null;write(async()=>{if(c==="models"){const o=S.models.find(x=>x.id===id)||{};await db.collection("history").add({ts:Date.now(),who:ME.name||"Unknown user",whoId:ME.id,model:o.name||"",platform:o.platform||"",field:"Account",from:"Saved",to:"Cleared"})}await db.collection(c).doc(id).delete();if(c==="models"&&isAdmin)try{await db.collection("credentials").doc(id).delete()}catch(e){}},"Deleted "+c.slice(0,-1),l)});
+ document.querySelectorAll("[data-qin]").forEach(i=>i.oninput=()=>{const[k,id]=i.dataset.qin.split("|");(QD[id]=QD[id]||{})[k]=i.value});
+ document.querySelectorAll("[data-ck]").forEach(c=>c.onchange=()=>{const id=c.dataset.ck;(QD[id]=QD[id]||{}).ck=[...document.querySelectorAll('[data-ck="'+id+'"]')].filter(x=>x.checked).map(x=>x.value)});
+ document.querySelectorAll("[data-qa]").forEach(b=>b.onclick=()=>{const[id,res]=b.dataset.qa.split("|");const lu=document.getElementById("lu"+id).value.trim();if(!lu)return alert("Please provide the Live URL Link before proceeding.");let okU=false;try{const uu=new URL(lu);okU=/^https?:$/.test(uu.protocol)&&uu.hostname.includes(".")}catch(e){}if(!okU)return alert("Please enter a valid Live URL Link, for example https://www.instagram.com/p/abc");const n=document.getElementById("n"+id).value;if(res==="Needs fix"&&!n.trim())return alert("Add a note explaining what needs fixing.");const ck=[...document.querySelectorAll('[data-ck="'+id+'"]')],done=ck.filter(x=>x.checked).map(x=>x.value);if(res==="Approved"&&done.length<ck.length)return alert("Tick every check before approving.");const p=S.posts.find(x=>x.id===id);
+  write(async()=>{await db.collection("posts").doc(id).update({qa:res,qaNotes:n,qaAt:Date.now(),qaBy:WHO(),qaChecks:done,postedUrl:lu});delete QD[id]},"QA "+res,`${p?p.modelName:""} · ${((p&&p.caption)||"").slice(0,40)}`)});
+ document.querySelectorAll("[data-post]").forEach(b=>b.onclick=()=>{const id=b.dataset.post;const u=safeUrl(document.getElementById("u"+id).value.trim());const p=S.posts.find(x=>x.id===id);
+  write(()=>db.collection("posts").doc(id).update({status:"Posted",postedUrl:u,postedAt:Date.now()}),"Marked posted",`${p.modelName} · ${p.platform}`)});
+ document.querySelectorAll("[data-undo]").forEach(b=>b.onclick=()=>{const p=S.posts.find(x=>x.id===b.dataset.undo);
+  write(()=>db.collection("posts").doc(p.id).update({status:"",postedUrl:"",postedAt:null,statusNote:"",statusBy:WHO(),statusAt:Date.now()}),"Reopened post",p.modelName)});
+ document.querySelectorAll("[data-exp]").forEach(b=>b.onclick=()=>exportData(b.dataset.exp))}
+
+function table(h,rows){return `<div class="card tw"><table><thead><tr>${h.map(x=>`<th>${x}</th>`).join("")}</tr></thead><tbody>${rows.join("")||`<tr><td colspan="${h.length}" class="mu">Nothing here yet.</td></tr>`}</tbody></table></div>`}
+const byWhen=(a,b)=>(a.when||"~").localeCompare(b.when||"~");
+
+function list(){
+ const ae=document.activeElement;if((tab==="models"||tab==="post"||tab==="qa")&&ae&&ae.tagName==="INPUT"&&ae.type!=="file"&&$("#list").contains(ae))return;
+ let h="";const P=S.posts.slice().sort(byWhen);
+ if(tab==="dash"){
+  const sch=P.filter(isOpen),qa=P.filter(p=>p.status==="Posted"&&p.qa!=="Approved"),rdy=P.filter(p=>p.status==="Posted"&&p.qa==="Approved");
+  const st=[["Accounts",S.models.length],["Scheduled",sch.length],["Awaiting QA",qa.length],["QA approved",rdy.length],["Posted",P.filter(p=>p.status==="Posted").length],["Overdue",sch.filter(p=>p.when&&p.when.slice(0,10)<nowL().slice(0,10)).length],["Due today",sch.filter(p=>p.when&&p.when.slice(0,10)===nowL().slice(0,10)).length],["Stored records",S.models.length+S.posts.length+S.log.length]];
+  h=`<div class="grid">${st.map(([k,v])=>`<div class="card stat"><b>${v}</b><span>${k}</span></div>`).join("")}</div>${coverage()}${recent()}<h3>Next up</h3>`+
+   table(["When","Model","Platform","Caption","QA"],sch.slice(0,8).map(p=>`<tr><td>${fd(p.when)}</td><td>${esc(p.modelName)}</td><td>${esc(p.platform)}</td><td>${esc((p.caption||"").slice(0,70))}</td><td>${chip(p.qa,qaC(p.qa))}</td></tr>`))}
+ else if(tab==="models"){h=modelView();}else if(0){const ms=S.models.filter(m=>(!pf||m.platform===pf)&&(!q||(m.name+" "+(m.email||"")).toLowerCase().includes(q.toLowerCase()))).sort((a,b)=>a.name.localeCompare(b.name));
+  h=`<div class="row" style="margin-bottom:10px"><input id="q" placeholder="Search model or email" value="${esc(q)}" style="max-width:240px"><select id="pf" style="max-width:160px"><option value="">All platforms</option>${PLATS.map(p=>`<option ${p===pf?"selected":""}>${p}</option>`).join("")}</select></div>`+
+  table(["Model","Platform","Link","Email","Password",""],ms.map(m=>{const c=S.creds[m.id];return `<tr><td>${esc(m.name)}</td><td>${esc(m.platform)}</td><td>${link(m.url)}</td><td>${esc(m.email)}</td><td>${!isAdmin?'<span class="mu">Restricted</span>':c&&c.pw?`<code>${shown[m.id]?esc(c.pw):"••••••••"}</code> <button class="s" data-show="${m.id}">${shown[m.id]?"Hide":"Show"}</button> <button class="s" data-copy="${m.id}">Copy</button>`:"—"}</td><td><div class="row"><button class="s" data-edit="${m.id}">Edit</button>${delBtn("models",m.id,m.name)}</div></td></tr>`}))}
+ else if(tab==="sched")h=schedList();else if(0)h=table(["When","Model","Platform","Caption","Media","Status","QA",""],P.map(p=>`<tr><td>${fd(p.when)}</td><td>${esc(p.modelName)}</td><td>${esc(p.platform)}</td><td>${esc(p.caption)}</td><td>${link(p.media)}</td><td>${chip(p.status,p.status==="Posted"?"ok":"")}</td><td>${chip(p.qa,qaC(p.qa))}</td><td>${delBtn("posts",p.id,p.modelName)}</td></tr>`));
+ else if(tab==="post")h=pmf?backBar("post",pmf)+postList():tiles("post");else if(0)h=`<p class="note">Only QA-approved posts can be marked as posted.</p>`+table(["When","Model / handle","Platform","Caption","Media","Post URL / status"],P.filter(p=>p.qa==="Approved"||p.status==="Posted").map(p=>`<tr><td>${fd(p.when)}</td><td>${esc(p.modelName)}<br><span class="mu">${esc(p.handle)}</span></td><td>${esc(p.platform)}${p.type?"<br><span class=\"mu\">"+esc(p.type)+"</span>":""}</td><td>${esc(p.caption)}</td><td>${link(p.media)}</td><td>${p.status==="Posted"?`${chip("Posted "+fd(p.postedAt),"ok")} ${link(p.postedUrl)} <button class="s" data-undo="${p.id}">Reopen</button>`:`<div class="row"><input id="u${p.id}" placeholder="Live post URL" style="width:180px"><button class="p" data-post="${p.id}">Mark posted</button></div>`}</td></tr>`));
+ else if(tab==="qa")h=qsel?backBar("qa",qsel)+qaList():tiles("qa");else if(tab==="qrec")h=qmf?backBar("qrec",qmf)+qrecList():tiles("qrec");else if(0)h=table(["When","Model","Caption / media","Status","Reviewer notes & decision"],P.filter(p=>p.status!=="Posted").map(p=>`<tr><td>${fd(p.when)}</td><td>${esc(p.modelName)}<br><span class="mu">${esc(p.platform)}${p.type?" · "+esc(p.type):""}</span></td><td>${esc(p.caption)}<br>${link(p.media)}</td><td>${chip(p.qa,qaC(p.qa))}</td><td><input id="n${p.id}" value="${esc(p.qaNotes)}" placeholder="Check caption, media, tags, links…"><div class="row" style="margin-top:6px"><button class="p" data-qa="${p.id}|Approved">Approve</button><button class="s d" data-qa="${p.id}|Needs fix">Needs fix</button></div></td></tr>`));
+ else if(tab==="team")h=teamList();else if(tab==="store")h=`<div class="card"><p class="note">Everything entered in this system is saved in the shared database. Export a backup any time.</p><div class="row"><button class="p" data-exp="json">Export JSON backup</button><button class="s" data-exp="csv">Export posts CSV</button></div><p class="mu">${S.models.length} accounts · ${S.posts.length} posts · ${S.log.length} log entries</p></div><h3>Activity log</h3>`+(!lmf?tiles("store"):backBar("store",lmf)+logBar()+
+  table(["Time","Who","Action","Model","Details"],sortedLog().map(l=>`<tr class="lgr" data-lg="${l.id}"><td>${fd(l.ts)}</td><td>${esc(l.who)||'<span class="mu">—</span>'}</td><td>${esc(l.action)}</td><td>${lmodel(l)?chip(lmodel(l)):'<span class="mu">—</span>'}</td><td>${esc(l.summary)}</td></tr>${logOpen===l.id?logDetail(l):""}`)));
+ $("#list").innerHTML=h;wire()}
+
+async function exportData(kind){
+ const d=await claude.use("downloads");if(!d)return alert("Downloads unavailable here.");
+ try{
+  if(kind==="json")await d.save({filename:"social-ops-backup.json",data:JSON.stringify(S,null,2)});
+  else{const c=["when","modelName","platform","handle","caption","media","status","qa","qaNotes","postedUrl"];
+   const q=v=>`"${String(v??"").replace(/"/g,'""')}"`;
+   await d.save({filename:"posting-sheet.csv",data:[c.join(","),...S.posts.slice().sort(byWhen).map(p=>c.map(k=>q(p[k])).join(","))].join("\n")})}
+ }catch(e){}}
+
+const IS='fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"';
+const SUN=`<svg viewBox="0 0 24 24" width="16" height="16" ${IS}><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M5 19l1.5-1.5M17.5 6.5 19 5"/></svg>`,MOON=`<svg viewBox="0 0 24 24" width="16" height="16" ${IS}><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>`;
+function curTheme(){return document.documentElement.dataset.theme||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}
+function paintTheme(){const d=curTheme()==="dark";$("#th").innerHTML=(d?SUN:MOON)+(d?"Light mode":"Dark mode")}
+try{const t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}
+$("#th").onclick=()=>{const n=curTheme()==="dark"?"light":"dark";document.documentElement.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}paintTheme()};
+try{matchMedia("(prefers-color-scheme: dark)").addEventListener("change",paintTheme)}catch(e){}
+paintTheme();
+nav();showForm();list();
+(async()=>{
+ db=await claude.use("db");
+ if(!db){$("#msg").innerHTML=`<div class="card">Sign in to claude.ai to load and save data.</div>`;return}
+ const u=await claude.use("user");isAdmin=!!(u&&await u.canEdit());try{const m=await u.me();ME={name:m.name||"",id:m.id,email:m.email||""};ISOWN=await u.isOwner();let role="Member";$(".sbfoot").innerHTML=`<img class="ua" src="${esc(m.avatarUrl)}" alt=""><span><b>${esc(ME.name||"Team member")}</b><br>${role}</span>`}catch(e){}
+ if(!u||!ME.id){$("#form").innerHTML="";$("#list").innerHTML="";$("#msg").innerHTML=`<div class="card"><h2 style="margin:0 0 6px">Sign in required</h2><p class="mu" style="margin:0">Please sign in to claude.ai with the account that was given access to Social Ops Hub. If you can't open it, ask the owner to share it with you.</p></div>`;return}
+ const teamReady=await new Promise(res=>{let first=true;db.collection("team").onSnapshot(s=>{T=s.docs.map(d=>d.data());if(first){first=false;res()}else{applyAccess();if(waiting&&(SUPER||MEMBER)){$("#msg").innerHTML=`<div class="card"><h2 style="margin:0">Access approved</h2><p class="mu" style="margin:6px 0 0">Please refresh this page to start.</p></div>`}else list()}},()=>{if(first){first=false;res()}})});
+ applyAccess();
+ if(!SUPER&&!MEMBER){waiting=true;try{await db.collection("requests").doc(ME.id).set({name:ME.name||"",ts:Date.now()})}catch(e){}$("#form").innerHTML="";$("#list").innerHTML="";$("#msg").innerHTML=`<div class="card"><h2 style="margin:0 0 6px">Waiting for approval</h2><p class="mu" style="margin:0">Your access request was sent as ${esc(ME.name||"your account")}. Please ask Gian Jaydon Sandrino to approve you, then refresh this page.</p></div>`;return}
+ showForm();
+ claude.use("assets").then(a=>{A=a;list();if(tab==="sched")showForm()});
+ if(SUPER)db.collection("requests").onSnapshot(s=>{REQ=s.docs.map(d=>({id:d.id,...d.data()}));list()},()=>{});
+ db.collection("roster").onSnapshot(s=>{ALLM=s.docs.map(d=>d.data()).sort((a,b)=>(a.order||0)-(b.order||0)).map(x=>x.name);applyAccess();if(pend&&MODELS.includes(pend)){mSel=pend;pend=null}if(!MODELS.includes(mSel))mSel=MODELS[0]||"";if(tab==="sched")showForm();list()},()=>{});
+ db.collection("history").onSnapshot(s=>{S.hist=s.docs.map(d=>({id:d.id,...d.data()})).filter(h=>canSee(h.model));list()},()=>{});
+ db.collection("avatars").onSnapshot(s=>{S.av={};s.docs.forEach(d=>S.av[d.id]=d.data().id);list()},()=>{});
+ if(isAdmin)db.collection("credentials").onSnapshot(s=>{S.creds={};s.docs.forEach(d=>S.creds[d.id]=d.data());list()},()=>{});
+ ["models","posts","log"].forEach(c=>db.collection(c).onSnapshot(s=>{S[c]=s.docs.map(d=>({id:d.id,...d.data()})).filter(x=>c==="log"?!!SUPER:canSee(c==="posts"?x.modelName:x.name));list()},e=>{$("#msg").innerHTML=`<div class="card">Could not load ${c}.</div>`}));
+})();
+</script></body></html>
